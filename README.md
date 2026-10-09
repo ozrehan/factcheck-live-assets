@@ -1,0 +1,1 @@
+# FactCheck Live media assets
