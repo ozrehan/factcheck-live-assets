@@ -1,0 +1,201 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>Amazing Facts You Won't Believe - YouTube</title>
+<style>
+body{margin:0;background:#0f0f0f;color:#fff;font-family:Roboto,Arial,sans-serif}
+.yt-bar{height:56px;display:flex;align-items:center;padding:0 16px;gap:16px;background:#0f0f0f}
+.yt-logo{font-size:20px;font-weight:800}.yt-logo span{color:#ff0000}
+.yt-search{flex:1;max-width:600px;margin:0 auto;display:flex}
+.yt-search input{flex:1;padding:9px 14px;border-radius:20px 0 0 20px;border:1px solid #333;background:#121212;color:#fff;outline:none}
+.yt-search button{padding:9px 18px;border-radius:0 20px 20px 0;border:1px solid #333;background:#222;color:#fff;cursor:pointer}
+.yt-main{display:flex;max-width:1750px;margin:0 auto;padding:20px;gap:20px}
+.yt-player{flex:1;min-width:0}
+.yt-video{aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.yt-video .thumb{font-size:64px;opacity:.3}
+.yt-video .play{position:absolute;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:32px;color:#000}
+.yt-title{font-size:19px;font-weight:700;margin:14px 0 8px}
+.yt-chan{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.yt-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-weight:800}
+.yt-side{width:380px;flex:none}
+.yt-rec{display:flex;gap:10px;margin-bottom:12px}
+.yt-rec .t{width:160px;aspect-ratio:16/9;background:#222;border-radius:8px;flex:none}
+.yt-rec .i{font-size:13px;line-height:1.4}
+</style>
+<style>
+    :host{all:initial}
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+    #fcl-fab{position:fixed;right:22px;bottom:22px;z-index:2147483647;width:60px;height:60px;
+      border-radius:50%;border:1px solid rgba(34,211,238,.6);cursor:pointer;
+      background:linear-gradient(135deg,#0e3a4a,#0b1220);color:#fff;font-size:26px;
+      box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 18px rgba(34,211,238,.35);
+      display:flex;align-items:center;justify-content:center;transition:transform .15s}
+    #fcl-fab:hover{transform:scale(1.08)}
+    #fcl-fab.busy{animation:fclpulse 1.1s infinite}
+    @keyframes fclpulse{50%{box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 34px rgba(34,211,238,.7)}}
+    #fcl-panel{position:fixed;right:22px;bottom:94px;z-index:2147483647;width:380px;max-width:92vw;
+      max-height:min(640px,80vh);display:flex;flex-direction:column;border-radius:18px;overflow:hidden;
+      background:rgba(10,15,28,.97);border:1px solid rgba(34,211,238,.35);color:#eef2f7;
+      box-shadow:0 24px 70px rgba(0,0,0,.6);backdrop-filter:blur(10px)}
+    #fcl-panel.fcl-hidden{display:none}
+    .fcl-head{display:flex;align-items:center;gap:10px;padding:13px 15px;
+      border-bottom:1px solid rgba(148,163,184,.15);cursor:move;user-select:none}
+    .fcl-logo{font-weight:900;letter-spacing:.05em;font-size:14px}
+    .fcl-logo b{color:#22d3ee}
+    .fcl-live{font-size:10px;font-weight:800;letter-spacing:.1em;color:#fca5a5;
+      border:1px solid rgba(248,113,113,.35);border-radius:999px;padding:3px 9px}
+    .fcl-x{margin-left:auto;background:none;border:0;color:#94a3b8;font-size:18px;cursor:pointer}
+    .fcl-x:hover{color:#fff}
+    .fcl-body{padding:14px 15px;overflow-y:auto;display:flex;flex-direction:column;gap:11px}
+    .fcl-row{display:flex;gap:8px}
+    .fcl-row input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;font-size:13px;
+      border:1px solid rgba(148,163,184,.25);background:#0d1424;color:#eef2f7;outline:none}
+    .fcl-row input:focus{border-color:#22d3ee}
+    .fcl-go{padding:10px 15px;border-radius:10px;border:0;font-weight:800;font-size:13px;cursor:pointer;
+      background:linear-gradient(135deg,#22d3ee,#38bdf8);color:#06222b;white-space:nowrap}
+    .fcl-go:disabled{opacity:.5;cursor:wait}
+    .fcl-status{font-size:12.5px;color:#94a3b8;line-height:1.5;min-height:18px}
+    .fcl-status.err{color:#fca5a5}
+    .fcl-meter{height:10px;border-radius:8px;background:rgba(148,163,184,.15);overflow:hidden}
+    .fcl-meter>div{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#f59e0b,#f87171);transition:width .5s}
+    .fcl-counts{display:flex;gap:12px;font-size:12px;color:#94a3b8}
+    .fcl-counts b{font-size:13px}
+    .fcl-ok{color:#22c55e}.fcl-bad{color:#f87171}.fcl-na{color:#64748b}
+    .fcl-card{background:rgba(17,24,39,.85);border:1px solid rgba(148,163,184,.16);
+      border-left:4px solid #64748b;border-radius:12px;padding:11px 13px;
+      animation:fclin .35s ease}
+    @keyframes fclin{from{transform:translateY(10px);opacity:0}}
+    .fcl-card.Supported{border-left-color:#22c55e}
+    .fcl-card.Disputed{border-left-color:#f87171}
+    .fcl-card.Unverifiable{border-left-color:#64748b}
+    .fcl-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+    .fcl-chip{font-size:10px;font-weight:800;letter-spacing:.06em;padding:3px 10px;border-radius:999px}
+    .fcl-chip.Supported{background:rgba(34,197,94,.15);color:#22c55e}
+    .fcl-chip.Disputed{background:rgba(248,113,113,.15);color:#f87171}
+    .fcl-chip.Unverifiable{background:rgba(100,116,139,.2);color:#9aa4b5}
+    .fcl-conf{margin-left:auto;font-size:11px;color:#94a3b8}
+    .fcl-claim{font-size:13.5px;line-height:1.45;margin-bottom:5px}
+    .fcl-why{font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:5px}
+    .fcl-src{font-size:12px}
+    .fcl-src summary{cursor:pointer;color:#22d3ee;font-weight:600}
+    .fcl-src a{color:#22d3ee;word-break:break-all;text-decoration:none;font-size:12px}
+    .fcl-src li{margin:5px 0 5px 16px;color:#94a3b8}
+    .fcl-foot{padding:10px 15px;border-top:1px solid rgba(148,163,184,.15);
+      font-size:11px;color:#64748b;display:flex;justify-content:space-between;align-items:center}
+    .fcl-foot a{color:#22d3ee;text-decoration:none}
+  </style>
+</head><body>
+<div class="yt-bar"><div class="yt-logo"><span>▶</span> YouTube</div><div class="yt-search"><input placeholder="Search"><button>🔍</button></div></div>
+<div class="yt-main">
+<div class="yt-player">
+<div class="yt-video"><div class="thumb">🌍</div><div class="play">▶</div></div>
+<div class="yt-title">10 Mind-Blowing Facts About Space That NASA Doesn't Want You To Know</div>
+<div class="yt-chan"><div class="yt-av">F</div><div><div style="font-weight:700">FactChannel</div><div style="font-size:12px;color:#aaa">2.4M subscribers</div></div></div>
+</div>
+<div class="yt-side">
+<div class="yt-rec"><div class="t"></div><div class="i">The Great Wall is visible from space with naked eye</div></div>
+<div class="yt-rec"><div class="t"></div><div class="i">We only use 10% of our brains - scientists confirm</div></div>
+<div class="yt-rec"><div class="t"></div><div class="i">Drinking lemon water detoxes your body overnight</div></div>
+</div>
+</div>
+<div id="fclive-root"></div>
+<script>
+document.getElementById('fclive-root').attachShadow({mode:'open'}).innerHTML = `<style>
+    :host{all:initial}
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+    #fcl-fab{position:fixed;right:22px;bottom:22px;z-index:2147483647;width:60px;height:60px;
+      border-radius:50%;border:1px solid rgba(34,211,238,.6);cursor:pointer;
+      background:linear-gradient(135deg,#0e3a4a,#0b1220);color:#fff;font-size:26px;
+      box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 18px rgba(34,211,238,.35);
+      display:flex;align-items:center;justify-content:center;transition:transform .15s}
+    #fcl-fab:hover{transform:scale(1.08)}
+    #fcl-fab.busy{animation:fclpulse 1.1s infinite}
+    @keyframes fclpulse{50%{box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 34px rgba(34,211,238,.7)}}
+    #fcl-panel{position:fixed;right:22px;bottom:94px;z-index:2147483647;width:380px;max-width:92vw;
+      max-height:min(640px,80vh);display:flex;flex-direction:column;border-radius:18px;overflow:hidden;
+      background:rgba(10,15,28,.97);border:1px solid rgba(34,211,238,.35);color:#eef2f7;
+      box-shadow:0 24px 70px rgba(0,0,0,.6);backdrop-filter:blur(10px)}
+    #fcl-panel.fcl-hidden{display:none}
+    .fcl-head{display:flex;align-items:center;gap:10px;padding:13px 15px;
+      border-bottom:1px solid rgba(148,163,184,.15);cursor:move;user-select:none}
+    .fcl-logo{font-weight:900;letter-spacing:.05em;font-size:14px}
+    .fcl-logo b{color:#22d3ee}
+    .fcl-live{font-size:10px;font-weight:800;letter-spacing:.1em;color:#fca5a5;
+      border:1px solid rgba(248,113,113,.35);border-radius:999px;padding:3px 9px}
+    .fcl-x{margin-left:auto;background:none;border:0;color:#94a3b8;font-size:18px;cursor:pointer}
+    .fcl-x:hover{color:#fff}
+    .fcl-body{padding:14px 15px;overflow-y:auto;display:flex;flex-direction:column;gap:11px}
+    .fcl-row{display:flex;gap:8px}
+    .fcl-row input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;font-size:13px;
+      border:1px solid rgba(148,163,184,.25);background:#0d1424;color:#eef2f7;outline:none}
+    .fcl-row input:focus{border-color:#22d3ee}
+    .fcl-go{padding:10px 15px;border-radius:10px;border:0;font-weight:800;font-size:13px;cursor:pointer;
+      background:linear-gradient(135deg,#22d3ee,#38bdf8);color:#06222b;white-space:nowrap}
+    .fcl-go:disabled{opacity:.5;cursor:wait}
+    .fcl-status{font-size:12.5px;color:#94a3b8;line-height:1.5;min-height:18px}
+    .fcl-status.err{color:#fca5a5}
+    .fcl-meter{height:10px;border-radius:8px;background:rgba(148,163,184,.15);overflow:hidden}
+    .fcl-meter>div{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#f59e0b,#f87171);transition:width .5s}
+    .fcl-counts{display:flex;gap:12px;font-size:12px;color:#94a3b8}
+    .fcl-counts b{font-size:13px}
+    .fcl-ok{color:#22c55e}.fcl-bad{color:#f87171}.fcl-na{color:#64748b}
+    .fcl-card{background:rgba(17,24,39,.85);border:1px solid rgba(148,163,184,.16);
+      border-left:4px solid #64748b;border-radius:12px;padding:11px 13px;
+      animation:fclin .35s ease}
+    @keyframes fclin{from{transform:translateY(10px);opacity:0}}
+    .fcl-card.Supported{border-left-color:#22c55e}
+    .fcl-card.Disputed{border-left-color:#f87171}
+    .fcl-card.Unverifiable{border-left-color:#64748b}
+    .fcl-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+    .fcl-chip{font-size:10px;font-weight:800;letter-spacing:.06em;padding:3px 10px;border-radius:999px}
+    .fcl-chip.Supported{background:rgba(34,197,94,.15);color:#22c55e}
+    .fcl-chip.Disputed{background:rgba(248,113,113,.15);color:#f87171}
+    .fcl-chip.Unverifiable{background:rgba(100,116,139,.2);color:#9aa4b5}
+    .fcl-conf{margin-left:auto;font-size:11px;color:#94a3b8}
+    .fcl-claim{font-size:13.5px;line-height:1.45;margin-bottom:5px}
+    .fcl-why{font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:5px}
+    .fcl-src{font-size:12px}
+    .fcl-src summary{cursor:pointer;color:#22d3ee;font-weight:600}
+    .fcl-src a{color:#22d3ee;word-break:break-all;text-decoration:none;font-size:12px}
+    .fcl-src li{margin:5px 0 5px 16px;color:#94a3b8}
+    .fcl-foot{padding:10px 15px;border-top:1px solid rgba(148,163,184,.15);
+      font-size:11px;color:#64748b;display:flex;justify-content:space-between;align-items:center}
+    .fcl-foot a{color:#22d3ee;text-decoration:none}
+  </style>
+    <button id="fcl-fab" title="Fact-check this video">⚡</button>
+    <div id="fcl-panel" class="fcl-hidden">
+      <div class="fcl-head" id="fcl-drag">
+        <div class="fcl-logo">⚡ FACTCHECK <b>LIVE</b></div>
+        <div class="fcl-live">FLOATING</div>
+        <button class="fcl-x" id="fcl-close" title="Close">✕</button>
+      </div>
+      <div class="fcl-body">
+        <div class="fcl-status" id="fcl-status">Scanning this video…</div>
+        <div class="fcl-meter"><div id="fcl-meterfill"></div></div>
+        <div class="fcl-counts">
+          <span class="fcl-ok">● <b id="fcl-nok">0</b> supported</span>
+          <span class="fcl-bad">● <b id="fcl-nbad">0</b> disputed</span>
+          <span class="fcl-na">● <b id="fcl-nna">0</b> unverifiable</span>
+        </div>
+        <div id="fcl-feed"></div>
+      </div>
+      <div class="fcl-foot"><span>Powered by FactCheck Live backend</span><a href="#" id="fcl-open">open dashboard ↗</a></div>
+    </div>`;
+// simulate: panel open, auto-scan done, verdicts in
+const sh = document.getElementById('fclive-root').shadowRoot;
+sh.getElementById('fcl-panel').classList.remove('fcl-hidden');
+sh.getElementById('fcl-status').textContent = 'Done — 3 claims checked. ✅';
+const feed = sh.getElementById('fcl-feed');
+const cards = [
+ ['Disputed','⚠️','92','The Great Wall of China is visible from space with the naked eye.','NASA confirms the Great Wall is not visible from the naked eye in low Earth orbit.'],
+ ['Disputed','⚠️','88','Humans only use 10% of their brains.','Neuroscience shows we use virtually all of the brain, even during sleep.'],
+ ['Unverifiable','❓','71','Drinking lemon water detoxes your body overnight.','No clinical evidence supports rapid detox claims for lemon water.'],
+];
+for (const [v,icon,conf,claim,why] of cards) {
+  const d = document.createElement('div');
+  d.className = 'fcl-card '+v;
+  d.innerHTML = `<div class="fcl-top"><span class="fcl-chip ${v}">${icon} ${v.toUpperCase()}</span><span class="fcl-conf">${conf}% confident</span></div><div class="fcl-claim">${claim}</div><div class="fcl-why">${why}</div>`;
+  feed.appendChild(d);
+}
+sh.getElementById('fcl-nbad').textContent='2'; sh.getElementById('fcl-nna').textContent='1';
+sh.getElementById('fcl-meterfill').style.width='67%';
+</script>
+</body></html>
